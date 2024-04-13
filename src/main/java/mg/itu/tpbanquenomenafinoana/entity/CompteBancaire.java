@@ -20,13 +20,13 @@ public class CompteBancaire implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nom;
     private int solde;
-    private Long id;
 
     public CompteBancaire() {
     }
-    
+
     public CompteBancaire(String nom, int solde) {
         this.nom = nom;
         this.solde = solde;
