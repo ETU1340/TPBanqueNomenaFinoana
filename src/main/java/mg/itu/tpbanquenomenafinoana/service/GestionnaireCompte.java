@@ -39,9 +39,19 @@ public class GestionnaireCompte {
     @PersistenceContext(unitName = "banquePU")
     private EntityManager em;
 
+    /**
+     *
+     * @param cb
+     * @return
+     */
     @Transactional
-    public void creerCompte(CompteBancaire c) {
-        em.persist(c);
+    public CompteBancaire update(CompteBancaire cb) {
+        return em.merge(cb);
+    }
+
+    @Transactional
+    public void creerCompte(CompteBancaire cb) {
+        em.persist(cb);
     }
 
     public List<CompteBancaire> getAllComptes() {
@@ -53,6 +63,10 @@ public class GestionnaireCompte {
     public long nbComptes() {
         Query query = em.createQuery("SELECT COUNT(cb) FROM CompteBancaire cb");
         return (long) query.getSingleResult();
+    }
+
+    public CompteBancaire findById(Long idCompte) {
+        return em.find(CompteBancaire.class, idCompte);
     }
 
 }

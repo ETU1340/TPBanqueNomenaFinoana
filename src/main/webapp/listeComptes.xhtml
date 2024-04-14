@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./WEB-INF/template/template_defaut.xhtml">
+
+            <ui:define name="top">
+                Liste des comptes
+            </ui:define>
+
+            <ui:define name="content">
+                <p:dataTable value="#{listeComptesBean.allComptes}"
+                             var="item" emptyMessage="Aucun compte bancaire avec ce critère">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id"/>
+                        </f:facet>
+                        <h:link outcome="compteDetails?idCompte=#{item.getId()}" 
+                                value="#{item.getId()}"/>
+                  
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nom"/>
+                        </f:facet>
+                        <h:outputText value="#{item.getNom()}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="solde"/>
+                        </f:facet>
+                        <h:outputText value="#{item.getSolde()}"/>
+                    </p:column>
+                </p:dataTable>
+            </ui:define>
+            <h:messages/>
+        </ui:composition>
+
+    </body>
+</html>
