@@ -69,4 +69,15 @@ public class GestionnaireCompte {
         return em.find(CompteBancaire.class, idCompte);
     }
 
+    @Transactional
+    public void transferer(CompteBancaire source, CompteBancaire destination,
+            int montant) {
+        source.retirer(montant);
+        destination.deposer(montant);
+        update(source);
+        update(destination);
+        
+    }
+
+
 }
