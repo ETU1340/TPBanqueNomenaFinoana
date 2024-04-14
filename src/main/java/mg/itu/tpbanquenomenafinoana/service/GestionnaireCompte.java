@@ -78,6 +78,28 @@ public class GestionnaireCompte {
         update(destination);
         
     }
+    
+        /**
+     * Dépôt d'argent sur un compte bancaire.
+     * @param compteBancaire
+     * @param montant 
+     */
+    @Transactional
+    public void deposer(CompteBancaire compteBancaire, int montant) {
+      compteBancaire.deposer(montant);
+      update(compteBancaire);
+    }
+    
+    /**
+     * Retrait d'argent sur un compte bancaire.
+     * @param compteBancaire
+     * @param montant 
+     */
+    @Transactional
+    public void retirer(CompteBancaire compteBancaire, int montant) {
+      compteBancaire.retirer(montant);
+      update(compteBancaire);
+    }
 
 
 }

@@ -8,7 +8,7 @@
 
     <body>
 
-        <ui:composition template="./WEB-INF/template/template_defaut.xhtml">
+        <ui:composition template="./WEB-INF/template/template_default.xhtml">
 
             <ui:define name="top">
                 Liste des comptes
@@ -21,7 +21,7 @@
                         <f:facet name="header">
                             <h:outputText value="Id"/>
                         </f:facet>
-                        <h:link outcome="compteDetails?idCompte=#{item.getId()}" 
+                        <h:link outcome="mouvement?id=#{item.getId()}" 
                                 value="#{item.getId()}"/>
 
                     </p:column>
