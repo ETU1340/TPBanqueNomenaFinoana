@@ -23,7 +23,7 @@
                         </f:facet>
                         <h:link outcome="compteDetails?idCompte=#{item.getId()}" 
                                 value="#{item.getId()}"/>
-                  
+
                     </p:column>
 
                     <p:column>
@@ -40,8 +40,9 @@
                         <h:outputText value="#{item.getSolde()}"/>
                     </p:column>
                 </p:dataTable>
+                <h:messages/>
             </ui:define>
-            <h:messages/>
+
         </ui:composition>
 
     </body>
