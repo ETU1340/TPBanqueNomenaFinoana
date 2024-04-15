@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+
+    <body>
+
+        <ui:composition template="./WEB-INF/template/template_default.xhtml">
+
+            <ui:define name="metadata">
+
+                <f:metadata>  
+                    <f:viewParam name="idCompte" value="#{compteDetailsBean.idCompte}"
+                                 required="true"/>
+                    <f:viewAction action="#{compteDetailsBean.loadCompte}"/>
+                </f:metadata>
+
+            </ui:define>
+
+            <ui:define name="top">
+
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <h1><h:outputText value="Editer"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Id:" for="id" />
+                        <h:inputText id="id"   readonly="true" value="#{compteDetailsBean.compteBancaire.id}" title="Id" />
+                        <h:outputLabel value="Nom:" for="nom" />
+                        <h:inputText id="nom" value="#{compteDetailsBean.compteBancaire.nom}" title="Nom" />
+                        <h:outputLabel value="Solde:" for="solde" />
+                        <h:inputText id="solde" value="#{compteDetailsBean.compteBancaire.solde}" title="Solde" />
+                        <h:commandButton id="update" value="Enregistrer" action="#{compteDetailsBean.update}"/>
+                    </h:panelGrid>
+                    <h:outputText value="Aucun compte bancaire avec l'id #{compteDetailsBean.idCompte} !" rendered='#{compteDetailsBean.compteBancaire == null}'/>
+                    <h:messages/>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

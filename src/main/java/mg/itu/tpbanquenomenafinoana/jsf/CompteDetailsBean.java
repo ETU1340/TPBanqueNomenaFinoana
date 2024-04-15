@@ -10,6 +10,7 @@ import jakarta.inject.Inject;
 import java.io.Serializable;
 import mg.itu.tpbanquenomenafinoana.entity.CompteBancaire;
 import mg.itu.tpbanquenomenafinoana.service.GestionnaireCompte;
+import mg.itu.tpbanquenomenafinoana.util.Util;
 
 /**
  *
@@ -21,6 +22,7 @@ public class CompteDetailsBean implements Serializable {
 
     private Long idCompte;
     private CompteBancaire cb;
+    private CompteBancaire lastCompte;
 
     @Inject
     private GestionnaireCompte gestionnaireCompte;
@@ -41,12 +43,23 @@ public class CompteDetailsBean implements Serializable {
     public String update() {
         // Modifie la base de données.
         // Il faut affecter à customer (sera expliqué dans le cours).
+        
         cb = gestionnaireCompte.update(cb);
-        return "listeComptes";
+        if(!lastCompte.getNom().equals(cb.getNom())) {
+            Util.addFlashInfoMessage("Nom " + lastCompte.getNom() + " changé en "+cb.getNom()+" ");
+        }
+        
+        if(lastCompte.getSolde()!= cb.getSolde()) {
+            Util.addFlashInfoMessage("Solde " + lastCompte.getSolde() + " changé en "+cb.getSolde()+" ");
+        }
+        
+        
+        return "listeComptes?faces-redirect=true";
     }
 
     public void loadCompte() {
         this.cb = gestionnaireCompte.findById(idCompte);
+        this.lastCompte = gestionnaireCompte.findById(idCompte);
     }
     public CompteBancaire getCompteBancaire() {
         return cb;
