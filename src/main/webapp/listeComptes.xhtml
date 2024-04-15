@@ -39,6 +39,18 @@
                         </f:facet>
                         <h:outputText value="#{item.getSolde()}"/>
                     </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Opérations"/>
+                        </f:facet>
+                        <h:form>
+                        <h:commandLink action="#{listeComptesBean.supprimerCompte(item)}"
+                                       title="Supprimer le compte de #{item.nom}" >
+                            <h:graphicImage name="images/del.png"/>
+                        </h:commandLink>
+                        </h:form>
+                    </p:column>
                 </p:dataTable>
                 <h:messages/>
             </ui:define>

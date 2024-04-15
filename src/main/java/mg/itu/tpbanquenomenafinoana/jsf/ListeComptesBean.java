@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 import mg.itu.tpbanquenomenafinoana.entity.CompteBancaire;
 import mg.itu.tpbanquenomenafinoana.service.GestionnaireCompte;
+import mg.itu.tpbanquenomenafinoana.util.Util;
 
 /**
  *
@@ -19,22 +20,30 @@ import mg.itu.tpbanquenomenafinoana.service.GestionnaireCompte;
 @Named(value = "listeComptesBean")
 @ViewScoped
 public class ListeComptesBean implements Serializable {
+
     @Inject
     private GestionnaireCompte gestionnaireCompte;
-    
-     private List<CompteBancaire> compteBancaire;
+
+    private List<CompteBancaire> compteBancaire;
+
     /**
      * Creates a new instance of ListeComptes
      */
     public ListeComptesBean() {
-        
+
     }
-    
-       public List<CompteBancaire> getAllComptes() {
+
+    public List<CompteBancaire> getAllComptes() {
         if (compteBancaire == null) {
             compteBancaire = gestionnaireCompte.getAllComptes();
         }
         return compteBancaire;
     }
-    
+
+    public String supprimerCompte(CompteBancaire compteBancaire) {
+        gestionnaireCompte.supprimerCompte(compteBancaire);
+        Util.addFlashInfoMessage("Compte de " + compteBancaire.getNom() + " supprimé");
+        return "listeComptes?faces-redirect=true";
+    }
+
 }
