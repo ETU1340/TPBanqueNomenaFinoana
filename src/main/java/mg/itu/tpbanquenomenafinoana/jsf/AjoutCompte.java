@@ -51,10 +51,15 @@ public class AjoutCompte {
     }
 
     public String ajoutCompte() {
-        CompteBancaire cb = new CompteBancaire(nom,solde);
-        gestionnaireCompte.creerCompte(cb);
-        Util.addFlashInfoMessage("Nouveau compte ajouté !");
-        return "ajoutCompte?faces-redirect=true";
+        if (nom.trim().isEmpty()) {
+            Util.messageErreur("Valeur de nom vide !", "Valeur de nom vide  !", "form:nom");
+            return null;
+        } else {
+            CompteBancaire cb = new CompteBancaire(nom, solde);
+            gestionnaireCompte.creerCompte(cb);
+            Util.addFlashInfoMessage("Nouveau compte ajouté !");
+            return "ajoutCompte?faces-redirect=true";
+        }
     }
 
 }

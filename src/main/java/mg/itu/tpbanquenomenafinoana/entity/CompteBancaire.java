@@ -27,9 +27,10 @@ public class CompteBancaire implements Serializable {
     public CompteBancaire() {
     }
 
-    public CompteBancaire(String nom, int solde) {
+    public CompteBancaire(String nom, int solde) {    
         this.nom = nom;
         this.solde = solde;
+
     }
 
     public void deposer(int montant) {

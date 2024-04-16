@@ -22,10 +22,10 @@
       </ui:define>
 
       <ui:define name="content">
-        <h1>Mouvement sur le compte numéro #{mouvement.id}
+        <h1 rendered='#{mouvement.compte != null}'>Mouvement sur le compte numéro #{mouvement.id}
           de #{mouvement.compte.nom}</h1>
 
-        <h:form>
+        <h:form rendered='#{mouvement.compte != null}'>
           <h:panelGrid columns="3">
             Nom du titulaire :
             <h:outputText value="#{mouvement.compte.nom}"/>
@@ -49,6 +49,7 @@
           <h:commandButton action="#{mouvement.enregistrerMouvement()}"
                            value="Enregistrer le mouvement"/>
         </h:form>
+          <h:outputText value="Aucun compte bancaire avec l'id #{mouvement.id} !" rendered='#{mouvement.compte== null}'/>
       </ui:define>
 
     </ui:composition>

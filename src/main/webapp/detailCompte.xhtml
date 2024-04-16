@@ -24,20 +24,24 @@
             </ui:define>
 
             <ui:define name="content">
-                <h:form>
+                <h:form rendered='#{compteDetailsBean.compteBancaire != null}'>
                     <h1><h:outputText value="Editer"/></h1>
-                    <h:panelGrid columns="2">
+                    <h:panelGrid columns="3">
                         <h:outputLabel value="Id:" for="id" />
                         <h:inputText id="id"   readonly="true" value="#{compteDetailsBean.compteBancaire.id}" title="Id" />
+                        <h:message for="id"/>
                         <h:outputLabel value="Nom:" for="nom" />
                         <h:inputText id="nom" value="#{compteDetailsBean.compteBancaire.nom}" title="Nom" />
+                        <h:message for="nom"/>
                         <h:outputLabel value="Solde:" for="solde" />
                         <h:inputText id="solde" value="#{compteDetailsBean.compteBancaire.solde}" title="Solde" />
+                        <h:message for="solde"/>
                         <h:commandButton id="update" value="Enregistrer" action="#{compteDetailsBean.update}"/>
                     </h:panelGrid>
-                    <h:outputText value="Aucun compte bancaire avec l'id #{compteDetailsBean.idCompte} !" rendered='#{compteDetailsBean.compteBancaire == null}'/>
+                  
                     <h:messages/>
                 </h:form>
+                  <h:outputText value="Aucun compte bancaire avec l'id #{compteDetailsBean.idCompte} !" rendered='#{compteDetailsBean.compteBancaire == null}'/>
             </ui:define>
 
         </ui:composition>

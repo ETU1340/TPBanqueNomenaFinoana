@@ -45,6 +45,8 @@ public class CompteDetailsBean implements Serializable {
         // Il faut affecter à customer (sera expliqué dans le cours).
         
         cb = gestionnaireCompte.update(cb);
+        
+        
         if(!lastCompte.getNom().equals(cb.getNom())) {
             Util.addFlashInfoMessage("Nom " + lastCompte.getNom() + " changé en "+cb.getNom()+" ");
         }

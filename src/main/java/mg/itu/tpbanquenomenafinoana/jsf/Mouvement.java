@@ -5,7 +5,6 @@
 package mg.itu.tpbanquenomenafinoana.jsf;
 
 import java.io.Serializable;
-import jakarta.ejb.EJB;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIInput;
@@ -14,6 +13,7 @@ import jakarta.faces.validator.ValidatorException;
 import jakarta.inject.Named;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
+import jakarta.validation.constraints.PositiveOrZero;
 import mg.itu.tpbanquenomenafinoana.entity.CompteBancaire;
 import mg.itu.tpbanquenomenafinoana.service.GestionnaireCompte;
 import mg.itu.tpbanquenomenafinoana.util.Util;
@@ -28,6 +28,7 @@ public class Mouvement implements Serializable {
   private Long id;
   private CompteBancaire compte;
   private String typeMouvement;
+  @PositiveOrZero
   private int montant;
 
   @Inject
@@ -86,7 +87,7 @@ public class Mouvement implements Serializable {
       // entre ajout et retrait (le choix est requis dans la page mouvement.xhtml)
       return;
     }
-    if (valeurTypeMouvement.equals("****")) {
+    if (valeurTypeMouvement.equals("retrait")) {
       int retrait = (int) valeur;
       if (compte.getSolde() < retrait) {
         FacesMessage message
