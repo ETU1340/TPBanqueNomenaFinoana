@@ -74,25 +74,27 @@ public class Transfert implements Serializable {
         boolean erreur = false;
 
         if (cbSource == null) {
-            // Message d'erreur associé au composant source ; form:source est l'id client
-            // si l'id du formulaire est "form" et l'id du champ de saisie de l'id de la source est "source"
-            // dans la page JSF qui lance le transfert.
             Util.messageErreur("Aucun compte avec cet id !", "Aucun compte avec cet id !", "form:source");
             erreur = true;
-        } else {
-            if (cbSource.getSolde() < montant) { // à compléter pour le cas où le solde du compte source est insuffisant...
-                Util.messageErreur("Solde insuffisant !", "Le montant indiqué depasse le solde de la source!", "form:source");
-                erreur = true;
-            }
+        } 
+        
+        if (cbReceveur == null) {
+            Util.messageErreur("Aucun compte avec cet id !", "Aucun compte avec cet id !", "form:receveur");
+            erreur = true;
+        }
+        
+        if (cbSource.getSolde() < montant) {
+            Util.messageErreur("Solde insuffisant !", "Le montant indiqué depasse le solde de la source!", "form:montant");
+            erreur = true;
         }
 
-        if (erreur) { // en cas d'erreur, rester sur la même page
+        if (erreur) { 
             return null;
         }
         gestionnaireCompte.transferer(cbSource, cbReceveur, montant);
         String messageSucces = "Une transfert de " + cbSource.getNom() + " d'une montant de " + montant + " vers " + cbReceveur.getNom() + " a bien été effectué";
         Util.addFlashInfoMessage(messageSucces);
-        return "listeComptes?idSource="+idSource+"&amp;idReceveur="+idReceveur+"&amp;montant="+montant+"&amp;faces-redirect=true ";
+        return "listeComptes?idSource=" + idSource + "&amp;idReceveur=" + idReceveur + "&amp;montant=" + montant + "&amp;faces-redirect=true ";
 
     }
 

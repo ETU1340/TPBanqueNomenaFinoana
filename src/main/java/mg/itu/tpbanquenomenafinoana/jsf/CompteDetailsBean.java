@@ -40,10 +40,7 @@ public class CompteDetailsBean implements Serializable {
      * @return la prochaine page à afficher, celle qui affiche la liste des
      * clients.
      */
-    public String update() {
-        // Modifie la base de données.
-        // Il faut affecter à customer (sera expliqué dans le cours).
-        
+    public String update() {        
         cb = gestionnaireCompte.update(cb);
         
         
