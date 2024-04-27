@@ -13,6 +13,7 @@ import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import mg.itu.tpbanquenomenafinoana.entity.CompteBancaire;
+import mg.itu.tpbanquenomenafinoana.entity.OperationBancaire;
 
 /**
  *
@@ -88,6 +89,7 @@ public class GestionnaireCompte {
     @Transactional
     public void deposer(CompteBancaire compteBancaire, int montant) {
         compteBancaire.deposer(montant);
+        compteBancaire.getOperations().add(new OperationBancaire("Depôt d'argent", montant));
         update(compteBancaire);
     }
 
@@ -100,12 +102,16 @@ public class GestionnaireCompte {
     @Transactional
     public void retirer(CompteBancaire compteBancaire, int montant) {
         compteBancaire.retirer(montant);
+        String valeur = "-" + String.valueOf(montant);
+        compteBancaire.getOperations().add(new OperationBancaire("Retrait d'argent", Integer.parseInt(valeur)));
         update(compteBancaire);
+
     }
 
     @Transactional
     public void supprimerCompte(CompteBancaire compte) {
         em.remove(em.merge(compte));
     }
+
 
 }
