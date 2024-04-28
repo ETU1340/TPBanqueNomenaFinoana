@@ -14,19 +14,20 @@ import java.time.LocalDateTime;
  *
  * @author Nomena
  */
-@Entity 
+@Entity
 public class OperationBancaire {
 
-    private static final long serialVersionUID = 1L; 
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
     private LocalDateTime dateOperation;
     private int montant;
-                    
-    public OperationBancaire() { }
-                    
+
+    public OperationBancaire() {
+    }
+
     public OperationBancaire(String description, int montant) {
         this.description = description;
         this.montant = montant;
@@ -64,7 +65,5 @@ public class OperationBancaire {
     public void setMontant(int montant) {
         this.montant = montant;
     }
-    
-    
-    
+
 }

@@ -44,9 +44,9 @@
                             <h:outputText value="Modifier"/>
                         </f:facet>
                         <h:form>
-                   <h:link outcome="detailCompte?idCompte=#{item.getId()}" >
-                       <h:graphicImage name="images/update.png" height="20" width="20"/>
-                    </h:link>     
+                            <h:link outcome="detailCompte?idCompte=#{item.getId()}" >
+                                <h:graphicImage name="images/update.png" height="20" width="20"/>
+                            </h:link>     
                         </h:form>
                     </p:column>
                     <p:column >
@@ -60,6 +60,15 @@
                             </h:commandLink>
                         </h:form>
                     </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Historique opérations"/>
+                        </f:facet>
+                        <h:link outcome="operations.xhtml" value="Détails">
+                            <f:param name="idOperation" value="#{item.getId()}" />
+                        </h:link>
+                    </p:column>
+
 
 
                 </p:dataTable>
