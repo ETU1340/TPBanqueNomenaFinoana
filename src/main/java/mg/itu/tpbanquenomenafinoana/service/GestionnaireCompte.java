@@ -56,7 +56,7 @@ public class GestionnaireCompte {
     }
 
     public List<CompteBancaire> getAllComptes() {
-        Query query = em.createQuery("SELECT cb FROM CompteBancaire cb join fetch cb.operations", CompteBancaire.class);
+        Query query = em.createQuery("SELECT distinct cb FROM CompteBancaire cb join fetch cb.operations", CompteBancaire.class);
         return query.getResultList();
 
     }
